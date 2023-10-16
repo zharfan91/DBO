@@ -5,7 +5,7 @@ services:
     restart: always
     container_name: dbo
     ports:
-      - 8181:8181
+      - 80:80
     depends_on:
       - postgres-db
     networks:
