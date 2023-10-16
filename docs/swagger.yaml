@@ -1,0 +1,391 @@
+basePath: /
+consumes:
+- application/json
+definitions:
+  model.Auth:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  model.Customer:
+    properties:
+      address:
+        type: string
+      city:
+        type: string
+      contact_number:
+        type: integer
+      id:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+      postal_code:
+        type: integer
+      state:
+        type: string
+      username:
+        type: string
+    type: object
+  model.Order:
+    properties:
+      Product_name:
+        type: string
+      customer_id:
+        type: string
+      id:
+        type: string
+      order_date:
+        type: string
+      product_id:
+        type: string
+      quantity:
+        type: integer
+      received_date:
+        type: string
+      shipped_date:
+        type: string
+      shipper_id:
+        type: string
+      shipping_address:
+        type: string
+      status:
+        type: string
+      unit_price:
+        type: integer
+    required:
+    - Product_name
+    - customer_id
+    - order_date
+    - product_id
+    - quantity
+    - shipper_id
+    - shipping_address
+    - status
+    - unit_price
+    type: object
+  model.Respon:
+    properties:
+      data: {}
+      message:
+        type: string
+      status:
+        type: integer
+    type: object
+host: localhost
+info:
+  contact: {}
+  description: This is a document API DBO Technical Test Backend Position
+  title: Swagger for [DBO Technical Test]
+  version: "1.0"
+paths:
+  /dbo/Order/{Order_ID}:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Order ID
+        in: path
+        name: Order_ID
+        required: true
+        type: string
+      - description: request
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/model.Order'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Respon'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Respon'
+      security:
+      - BearerAuth: []
+      summary: Update Order
+      tags:
+      - Order
+  /dbo/customer:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: page
+        in: query
+        name: page
+        required: true
+        type: integer
+      - description: limit
+        in: query
+        name: limit
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Respon'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Respon'
+      security:
+      - BearerAuth: []
+      summary: Get All Customer
+      tags:
+      - Customer
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: request
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/model.Customer'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Respon'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Respon'
+      security:
+      - BearerAuth: []
+      summary: Creat Customer
+      tags:
+      - Customer
+  /dbo/customer/{Customer_ID}:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: Customer ID
+        in: path
+        name: Customer_ID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Respon'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Respon'
+      security:
+      - BearerAuth: []
+      summary: Delete Customer
+      tags:
+      - Customer
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Customer ID
+        in: path
+        name: Customer_ID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Respon'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Respon'
+      security:
+      - BearerAuth: []
+      summary: Get Detail Customer
+      tags:
+      - Customer
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Customer ID
+        in: path
+        name: Customer_ID
+        required: true
+        type: string
+      - description: request
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/model.Customer'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Respon'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Respon'
+      security:
+      - BearerAuth: []
+      summary: Update Customer
+      tags:
+      - Customer
+  /dbo/order:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: page
+        in: query
+        name: page
+        required: true
+        type: integer
+      - description: limit
+        in: query
+        name: limit
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Respon'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Respon'
+      security:
+      - BearerAuth: []
+      summary: Get All Order
+      tags:
+      - Order
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: request
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/model.Order'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Respon'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Respon'
+      security:
+      - BearerAuth: []
+      summary: Creat Order
+      tags:
+      - Order
+  /dbo/order/{Order_ID}:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: Order ID
+        in: path
+        name: Order_ID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Respon'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Respon'
+      security:
+      - BearerAuth: []
+      summary: Delete Order
+      tags:
+      - Order
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Order ID
+        in: path
+        name: Order_ID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Respon'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Respon'
+      security:
+      - BearerAuth: []
+      summary: Get Detail Order
+      tags:
+      - Order
+  /login:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: request
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/model.Auth'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Respon'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Respon'
+      summary: Login
+      tags:
+      - Authentication
+schemes:
+- http
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
